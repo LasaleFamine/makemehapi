@@ -11,7 +11,7 @@ let setCookie = (req, reply) => {
 
 let getCookie = (req, reply) => {
   let cookie = req.state.session
-  if(!cookie) {
+  if(cookie) {
     reply({user: 'hapi'})
   } else {
     reply(Boom.badRequest("Invalid cookie value"))
@@ -46,13 +46,7 @@ server.route({
 server.route({
   path: '/check-cookie',
   method: 'GET',
-  handler: getCookie,
-  config: {
-    state: {
-      parse: true,
-      failAction: 'log'
-    }
-  }
+  handler: getCookie
 })
 
 
